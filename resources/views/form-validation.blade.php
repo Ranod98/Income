@@ -114,6 +114,7 @@
 										<div class="col-6">
 											<div class="form-group mg-b-0">
 												<label class="form-label">Firstname: <span class="tx-danger">*</span></label>
+												<label class="form-label">Firstname: <span class="tx-danger">*</span></label>
 												<input class="form-control" name="firstname" placeholder="Enter firstname" required="" type="text">
 											</div>
 										</div>
