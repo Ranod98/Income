@@ -17,7 +17,8 @@ class CreateSelfBoxesTable extends Migration
             $table->id();
             $table->string('date');
             $table->foreignId('income_id')->nullable()->constrained('incomes')->onDelete('cascade');
-            $table->decimal('credit',8, 3);
+            $table->decimal('credit',12)->default(0);;
+            $table->decimal('debit',12)->default(0);;
             $table->string('percentage');
             $table->string('note');
             $table->timestamps();

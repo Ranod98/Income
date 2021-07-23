@@ -38,6 +38,14 @@ class IncomeRepository implements IncomeInterface
 
         try {
 
+            $percentage = $request->selfBox + $request->learnBox + $request->necessaryBox + $request->incentive + $request->expense;
+
+            if ($percentage > 100) {
+                toastr()->error(trans('main.error'));
+                return redirect()->back()->withErrors(['error' => __('main.percentage_grater_100')]);
+
+
+            }//end of if
 
 
             $amount = $request->credit;
@@ -159,7 +167,14 @@ class IncomeRepository implements IncomeInterface
 
 
         try {
+            $percentage = $request->selfBox + $request->learnBox + $request->necessaryBox + $request->incentive + $request->expense;
 
+            if ($percentage > 100) {
+                toastr()->error(trans('main.error'));
+                return redirect()->back()->withErrors(['error' => __('main.percentage_grater_100')]);
+
+
+            }//end of if
 
 
             $amount = $request->credit;

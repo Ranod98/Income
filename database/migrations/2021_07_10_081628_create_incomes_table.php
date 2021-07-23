@@ -17,7 +17,8 @@ class CreateIncomesTable extends Migration
             $table->id();
             $table->string('date');
             $table->string('income_type');
-            $table->decimal('credit',8, 3);
+            $table->decimal('credit',12)->default(0);;
+            $table->decimal('debit',12)->default(0);
             $table->string('note');
             $table->timestamps();
         });

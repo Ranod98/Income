@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\dashboard\HomeController;
+use App\Http\Controllers\dashboard\Incentive\incentiveController;
 use App\Http\Controllers\dashboard\Income\IncomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,9 +25,8 @@ Route::group(
         Route::get('/',[HomeController::class,'index']);
 
 
-            Route::resource('/incomes',IncomeController::class);
-
-
+        Route::resource('/incomes',IncomeController::class);
+        Route::resource('/incentives',incentiveController::class);
 
 
     });

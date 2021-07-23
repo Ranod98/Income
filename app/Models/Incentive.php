@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Incentive extends Model
 {
     use HasFactory;
+
+    public function income(){
+
+        return $this->belongsTo(Income::class);
+    }//end of income relation
 }

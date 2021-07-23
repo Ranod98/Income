@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repository\IncentiveInterface;
+use App\Repository\IncentiveRepository;
 use App\Repository\incomeRepository;
 use App\Repository\IncomeInterface;
 use Illuminate\Support\ServiceProvider;
@@ -16,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(IncomeInterface::class,IncomeRepository::class);
-
+        $this->app->bind(IncentiveInterface::class,IncentiveRepository::class);
 
     }//end of register
 

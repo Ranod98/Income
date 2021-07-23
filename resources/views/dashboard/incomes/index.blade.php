@@ -26,6 +26,7 @@
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
                         <h4 class="card-title text-right mg-b-0">
+
                             <a href="{{route('dashboard.incomes.create')}}" class="btn btn-success-gradient btn-block">@lang('incomes.add_new_income')</a>
                         </h4>
                     </div>
