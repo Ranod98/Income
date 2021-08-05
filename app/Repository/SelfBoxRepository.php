@@ -5,27 +5,28 @@ namespace App\Repository;
 
 
 use App\Models\Incentive;
+use App\Models\SelfBox;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use mysql_xdevapi\Exception;
 
-class IncentiveRepository implements IncentiveInterface
+class SelfBoxRepository implements SelfBoxInterface
 {
 
     public function index()
     {
-       $incentives = Incentive::all();
+        $selfBoxes = SelfBox::all();
 
-       return view('dashboard.incentives.index',compact('incentives'));
+        return view('dashboard.selfBoxes.index',compact('selfBoxes'));
     }//end of index
 
     public function create()
     {
-       return view('dashboard.incentives.create');
+        return view('dashboard.selfBoxes.create');
     }//end of create
 
     public function store($request)
     {
+
         $request->validate([
             'date' => 'required',
             'credit' => 'required',
@@ -37,19 +38,19 @@ class IncentiveRepository implements IncentiveInterface
         try {
 
             //خه‌زنكردنی پڕی پاره‌ی هه‌ڵگرتن
-            $incentive = new Incentive();
+            $selfBox = new SelfBox();
 
-            $incentive->date = $request->date;
-            $incentive->credit = $request->credit;
-            $incentive->percentage = 100;
-            $incentive->note = $request->note ;
+            $selfBox->date = $request->date;
+            $selfBox->credit = $request->credit;
+            $selfBox->percentage = 100;
+            $selfBox->note = $request->note ;
 
-            $incentive->save();
+            $selfBox->save();
 
             DB::commit();
 
             toastr()->success(trans('main.data_saved'));
-            return redirect()->route('dashboard.incentives.index');
+            return redirect()->route('dashboard.selfboxes.index');
         }catch (\Exception $exception){
 
             DB::rollBack();
@@ -62,16 +63,16 @@ class IncentiveRepository implements IncentiveInterface
 
     public function show($id)
     {
-        $incentive = Incentive::findOrFail($id);
-        return view('dashboard.incentives.print',compact('incentive'));
+        $selfBox = SelfBox::findOrFail($id);
+        return view('dashboard.selfBoxes.print',compact('selfBox'));
     }//end of show
 
     public function edit($id)
     {
-        $incentive = Incentive::findOrFail($id);
+        $selfBox = SelfBox::findOrFail($id);
 
 
-        return view('dashboard.incentives.edit',compact('incentive'));
+        return view('dashboard.selfBoxes.edit',compact('selfBox'));
     }//end of edit
 
     public function update($request, $id)
@@ -81,18 +82,18 @@ class IncentiveRepository implements IncentiveInterface
         try {
 
             //خه‌زنكردنی پڕی پاره‌ی هه‌ڵگرتن
-            $incentive = Incentive::findOrFail($id);
+            $selfBox = SelfBox::findOrFail($id);
 
-            $incentive->date = $request->date;
-            $incentive->credit = $request->credit;
-            $incentive->note = $request->note ;
+            $selfBox->date = $request->date;
+            $selfBox->credit = $request->credit;
+            $selfBox->note = $request->note ;
 
-            $incentive->save();
+            $selfBox->save();
 
             DB::commit();
 
             toastr()->success(trans('main.data_updated'));
-            return redirect()->route('dashboard.incentives.index');
+            return redirect()->route('dashboard.selfboxes.index');
         }catch (\Exception $exception){
 
             DB::rollBack();
@@ -105,9 +106,9 @@ class IncentiveRepository implements IncentiveInterface
     public function destroy($id)
     {
         try {
-            Incentive::destroy($id);
+            SelfBox::destroy($id);
             toastr()->error(trans('main.data_deleted'));
-            return redirect()->route('dashboard.incentives.index');
+            return redirect()->route('dashboard.selfboxes.index');
         }catch (\Exception $exception){
 
             toastr()->error(trans('main.error'));
@@ -117,4 +118,4 @@ class IncentiveRepository implements IncentiveInterface
         }//end of catch
 
     }//end of  destroy
-}//end if class
+}
