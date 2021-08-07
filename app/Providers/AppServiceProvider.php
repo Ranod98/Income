@@ -8,6 +8,8 @@ use App\Repository\incomeRepository;
 use App\Repository\IncomeInterface;
 use App\Repository\LearnBoxInterface;
 use App\Repository\LearnBoxRepository;
+use App\Repository\NecessaryBoxInterface;
+use App\Repository\NecessaryBoxRepository;
 use App\Repository\SelfBoxInterface;
 use App\Repository\SelfBoxRepository;
 use Illuminate\Support\ServiceProvider;
@@ -25,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(IncentiveInterface::class,IncentiveRepository::class);
         $this->app->bind(SelfBoxInterface::class,SelfBoxRepository::class);
         $this->app->bind(LearnBoxInterface::class,LearnBoxRepository::class);
+        $this->app->bind(NecessaryBoxInterface::class,NecessaryBoxRepository::class);
     }//end of register
 
     /**
