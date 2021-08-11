@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\dashboard\Bank\BankController;
 use App\Http\Controllers\dashboard\Expense\ExpenseController;
 use App\Http\Controllers\dashboard\HomeController;
 use App\Http\Controllers\dashboard\Incentive\incentiveController;
@@ -38,6 +39,7 @@ Route::group(
         Route::resource('/learnboxes',LearnBoxController::class);
         Route::resource('/necessariesboxes',NecessaryBoxController::class);
         Route::resource('/expenses',ExpenseController::class);
+        Route::resource('/banks',BankController::class);
     });
 });
 

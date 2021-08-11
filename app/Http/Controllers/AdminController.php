@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use KarwanKhalid\Fastpay\Events\FastpayPaymentComplete;
+use KarwanKhalid\Fastpay\Services\Fastpay;
 
 class AdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index($id)
     {
         if(view()->exists($id)){

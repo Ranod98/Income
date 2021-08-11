@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repository\BankInterface;
+use App\Repository\BankRepository;
 use App\Repository\ExpenseInterface;
 use App\Repository\ExpenseRepository;
 use App\Repository\IncentiveInterface;
@@ -31,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(LearnBoxInterface::class,LearnBoxRepository::class);
         $this->app->bind(NecessaryBoxInterface::class,NecessaryBoxRepository::class);
         $this->app->bind(ExpenseInterface::class,ExpenseRepository::class);
-
+        $this->app->bind(BankInterface::class,BankRepository::class);
     }//end of register
 
     /**
