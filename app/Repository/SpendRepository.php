@@ -50,8 +50,33 @@ class SpendRepository implements SpendInterface
 
     public function store($request)
     {
-        // TODO: Implement store() method.
-    }
+        try {
+
+
+           $request->validate([
+               'debit' => 'numeric'
+           ]);
+
+           if ($request->spendOfMonth < $request->debit) {
+               return redirect()->back()->withErrors(['error'=>__('selfBoxes.dont_have_money')]);
+           }
+
+           Expense::create([
+               'debit' => $request->debit,
+               'note' => $request->note,
+               'date' => date('Y-m')
+           ]);
+
+
+            toastr()->success(trans('main.data_updated'));
+            return redirect()->route('dashboard.spends.index');
+
+
+        }catch (\Exception $exception){
+            toastr()->error(trans('main.error'));
+            return redirect()->back()->withErrors(['error'=>$exception->getMessage()]);
+        }
+    }//end of store
 
     public function show($id)
     {
@@ -70,6 +95,18 @@ class SpendRepository implements SpendInterface
 
     public function destroy($id)
     {
-        // TODO: Implement destroy() method.
-    }
+        try {
+            Expense::destroy($id);
+            toastr()->error(trans('main.data_deleted'));
+            return redirect()->back();
+        }catch (\Exception $exception){
+
+            toastr()->error(trans('main.error'));
+
+
+            return redirect()->back()->withErrors(['error' => $exception->getMessage()]);
+        }//end of catch
+    }//end of destroy
+
+
 }

@@ -106,6 +106,7 @@ class ExpenseRepository implements ExpenseInterface
 
     public function destroy($id)
     {
+        dd($id);
         try {
             Expense::destroy($id);
             toastr()->error(trans('main.data_deleted'));

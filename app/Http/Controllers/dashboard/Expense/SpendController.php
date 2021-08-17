@@ -22,6 +22,7 @@ class SpendController extends Controller
 
     public function create()
     {
+
         return $this->spend->create();
 
     }//end of create
@@ -53,6 +54,6 @@ class SpendController extends Controller
 
     public function destroy($id)
     {
-        //
-    }
+        return $this->spend->destroy($id);
+    }//end of destroy
 }

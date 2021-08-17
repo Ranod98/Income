@@ -28,7 +28,12 @@
                     <div class="d-flex justify-content-between">
                         <h4 class="card-title text-right mg-b-0">
 
+                            @if ($spendOfMonth > 1)
                             <a href="{{route('dashboard.spends.create')}}" class="btn btn-success-gradient btn-block">@lang('selfBoxes.add_new_spend')</a>
+                            @else
+                                <a href="#" class="btn btn-danger-gradient btn-block disabled" >@lang('selfBoxes.add_new_spend')</a>
+
+                            @endif
                         </h4>
                         <h4 class="card-title text-left mg-b-0">
                             @lang('selfBoxes.spend_of_month'): {{$spendOfMonth}}
@@ -67,7 +72,6 @@
                                                 <a href="{{route('dashboard.spends.edit',$spend->id)}}" class="btn btn-sm btn-indigo btn-icon"><i class="typcn typcn-edit"></i></a>
                                                 <button type="button" class="btn btn-sm btn-primary btn-icon" data-toggle="modal" data-target="#Delete_incentive{{$spend->id}}" ><i class="typcn typcn-trash"></i></button>
                                                 <button class="btn btn-sm btn-success btn-icon" data-effect="effect-fall" data-toggle="modal" href="#modaldemo{{$spend->id}}"><i class="typcn typcn-eye"></i></button>
-                                                <a class="btn btn-sm btn-info btn-icon" href="{{route('dashboard.spends.show',$spend->id)}}"><i class="typcn typcn-printer"></i></a>
                                             </div>
 
                                         </td>

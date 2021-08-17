@@ -9,6 +9,8 @@ class Expense extends Model
 {
     use HasFactory;
 
+    protected $guarded;
+
     public function income(){
 
         return $this->belongsTo(Income::class);
