@@ -43,14 +43,14 @@ class SpendController extends Controller
 
     public function edit($id)
     {
-        //
-    }
+        return $this->spend->edit($id);
+    }//end of edit
 
 
     public function update(Request $request, $id)
     {
-        //
-    }
+        return $this->spend->update($request,$id);
+    }//end of update
 
     public function destroy($id)
     {

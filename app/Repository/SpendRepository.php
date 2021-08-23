@@ -85,13 +85,53 @@ class SpendRepository implements SpendInterface
 
     public function edit($id)
     {
-        // TODO: Implement edit() method.
-    }
+        $from = date('Y-m');
+        $expenses  =Expense::where('date',$from)->get();
+
+        $spendOfMonth = 0;
+
+        foreach ($expenses as $expens){
+
+            $spendOfMonth  += $expens->credit - $expens->debit;
+        }//end for each
+
+        $spend = Expense::findOrFail($id);
+
+
+        return view('dashboard.expenses.spends.edit',compact('spendOfMonth','spend'));    }//end of edit
 
     public function update($request, $id)
     {
-        // TODO: Implement update() method.
-    }
+
+        try {
+            $request->validate([
+                'debit' => 'numeric'
+            ]);
+
+            if ($request->spendOfMonth < $request->debit) {
+                return redirect()->back()->withErrors(['error'=>__('selfBoxes.dont_have_money')]);
+            }
+
+
+            $expense = Expense::findOrFail($id);
+
+
+
+            $expense->update([
+                'debit' => $request->credit,
+                'note' => $request->note,
+            ]);
+
+
+            toastr()->success(trans('main.data_updated'));
+            return redirect()->route('dashboard.spends.index');
+
+
+        }catch (\Exception $exception){
+            toastr()->error(trans('main.error'));
+            return redirect()->back()->withErrors(['error'=>$exception->getMessage()]);
+        }
+    }//end of update
 
     public function destroy($id)
     {
