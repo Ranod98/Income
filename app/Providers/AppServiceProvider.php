@@ -18,6 +18,8 @@ use App\Repository\SelfBoxInterface;
 use App\Repository\SelfBoxRepository;
 use App\Repository\SpendInterface;
 use App\Repository\SpendRepository;
+use App\Repository\WithdrawBankInterface;
+use App\Repository\WithdrawBankRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -37,6 +39,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ExpenseInterface::class,ExpenseRepository::class);
         $this->app->bind(BankInterface::class,BankRepository::class);
         $this->app->bind(SpendInterface::class,SpendRepository::class);
+        $this->app->bind(WithdrawBankInterface::class,WithdrawBankRepository::class);
+
     }//end of register
 
     /**
